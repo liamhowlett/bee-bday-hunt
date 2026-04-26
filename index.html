@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Birthday Treasure Hunt 💝</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="letter-content">
+                <h1>Happy Birthday Bumble Bee! ❤️</h1>
+                <div class="letter-text">
+                    <p>Dear Bee,</p>
+                    <p>I thought I'd try my hand at something a bit more personal this year and knowing I could never match up to your creative craft abilities, I thought I'd lean on something that I am good at - technology.</p>
+                    <p>Today, I've hidden four special messages around our land. Each one is waiting to be discovered at a What3Words location.</p>
+                    <p>Solve the clues, find the locations, and discover what awaits you at the end...</p>
+                    <p>With all my love,<br>Liam</p>
+                </div>
+                <button class="btn-primary" onclick="startHunt()">Begin the Adventure ✨</button>
+            </div>
+        </div>
+
+        <!-- Quest Screen -->
+        <div id="quest-screen" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div class="quest-header">
+                <h2 id="quest-title">Location 1 of 3</h2>
+                <p class="quest-story" id="quest-story"></p>
+            </div>
+
+            <div class="clue-card">
+                <h3>Your Clue:</h3>
+                <p class="clue-text" id="clue-text"></p>
+                
+                <button class="btn-hint" id="hint-btn" onclick="toggleHint()">Need a hint? 💡</button>
+                <div class="hint-text hidden" id="hint-text"></div>
+            </div>
+
+            <div class="answer-section">
+                <label for="answer-input">Complete the What3Words location:</label>
+                <div class="word-pattern" id="word-pattern"></div>
+                <input 
+                    type="text" 
+                    id="answer-input" 
+                    placeholder="Enter the missing word"
+                    autocomplete="off"
+                >
+                <button class="btn-submit" onclick="checkAnswer()">Submit Answer</button>
+                <p class="feedback" id="feedback"></p>
+                <button class="btn-skip" onclick="skipClue()">Skip This Clue 🔓</button>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="success-screen" class="screen">
+            <div class="success-content">
+                <h1>Navigate to the marker and then click continue</h1>
+                
+                <div class="map-container" id="map-container">
+                    <!-- Map will be embedded here -->
+                </div>
+                
+                <button class="btn-gps" id="gps-btn" onclick="getDirections()">
+                    📍 Get Directions from My Location
+                </button>
+                
+                <button class="btn-primary" onclick="nextClue()">Continue →</button>
+            </div>
+        </div>
+
+        <!-- Final Screen -->
+        <div id="final-screen" class="screen">
+            <div class="final-content">
+                <h1>You Found Them All! 💖</h1>
+                
+                <div class="final-location">
+                    <h2>Your Final Destination:</h2>
+                    <div class="final-words" id="final-words"></div>
+                    <div id="final-map" class="map-container"></div>
+                    <button class="btn-gps" id="final-gps-btn" onclick="getDirections()">
+                        📍 Get Directions from My Location
+                    </button>
+                </div>
+                
+                <div class="letter-text" style="margin-top: 30px;">
+                    <p id="final-message" class="quest-story"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
