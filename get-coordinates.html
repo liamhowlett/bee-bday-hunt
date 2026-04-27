@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Coordinates</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 800px; margin: 0 auto; }
+        input, button { padding: 10px; margin: 5px; font-size: 16px; }
+        .result { background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .coords { font-weight: bold; color: #0066cc; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>What3Words to Coordinates Converter</h1>
+    
+    <h2>Your Locations:</h2>
+    <div id="results"></div>
+    
+    <script>
+        const API_KEY = 'Q2JPPSAI';
+        const addresses = [
+            'polices.perky.tabs',
+            'unwanted.seemingly.overruns',
+            'vanish.alternate.bunkers',
+            'grading.scrubbing.recorders',
+            'donation.decently.forgets'
+        ];
+        
+        async function convertAddress(words) {
+            try {
+                const response = await fetch(`https://api.what3words.com/v3/convert-to-coordinates?words=${words}&key=${API_KEY}`);
+                const data = await response.json();
+                
+                if (data.coordinates) {
+                    return {
+                        words: words,
+                        lat: data.coordinates.lat,
+                        lng: data.coordinates.lng,
+                        success: true
+                    };
+                } else {
+                    return {
+                        words: words,
+                        error: data.error?.message || 'Unknown error',
+                        success: false
+                    };
+                }
+            } catch (error) {
+                return {
+                    words: words,
+                    error: error.message,
+                    success: false
+                };
+            }
+        }
+        
+        async function convertAll() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Converting addresses...</p>';
+            
+            const results = [];
+            for (const address of addresses) {
+                const result = await convertAddress(address);
+                results.push(result);
+                
+                let html = '<div class="result">';
+                html += `<strong>${result.words}</strong><br>`;
+                if (result.success) {
+                    html += `<span class="coords">lat: ${result.lat}, lng: ${result.lng}</span>`;
+                } else {
+                    html += `<span style="color: red;">Error: ${result.error}</span>`;
+                }
+                html += '</div>';
+                
+                resultsDiv.innerHTML += html;
+            }
+        }
+        
+        convertAll();
+    </script>
+</body>
+</html>

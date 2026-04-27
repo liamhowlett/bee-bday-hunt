@@ -8,12 +8,12 @@ const CONFIG = {
             clue: "What customers run up at the pub where you work, and what I have too many of open in my browser",
             hint: "Sounds like what you'd catch at the beach, but with a 'T' instead of a 'C'",
             answer: "polices.perky.tabs",
-            wordToGuess: "tabs", // The word she needs to guess
-            displayPattern: "polices.perky._____", // What to show
+            wordToGuess: "tabs",
+            displayPattern: "polices.perky._____",
             successMessage: "[Message revealed after solving - could reference a memory at this location]",
             mapWords: "polices.perky.tabs",
-            lat: 51.508341,  // REPLACE WITH ACTUAL LATITUDE
-            lng: -0.125499   // REPLACE WITH ACTUAL LONGITUDE
+            lat: 50.8020830,
+            lng: -4.0891180
         },
         {
             title: "Location 2 of 4",
@@ -25,8 +25,8 @@ const CONFIG = {
             displayPattern: "unwanted.seemingly._____",
             successMessage: "[Second success message]",
             mapWords: "unwanted.seemingly.overruns",
-            lat: 51.508341,
-            lng: -0.125499
+            lat: 50.8026760,
+            lng: -4.0898010
         },
         {
             title: "Location 3 of 4",
@@ -38,8 +38,8 @@ const CONFIG = {
             displayPattern: "_____.alternate.bunkers",
             successMessage: "[Third success message]",
             mapWords: "vanish.alternate.bunkers",
-            lat: 51.508341,
-            lng: -0.125499
+            lat: 50.8018410,
+            lng: -4.0893310
         },
         {
             title: "Location 4 of 4",
@@ -51,15 +51,12 @@ const CONFIG = {
             displayPattern: "grading._____.recorders",
             successMessage: "[Fourth success message]",
             mapWords: "grading.scrubbing.recorders",
-            lat: 51.508341,
-            lng: -0.125499
+            lat: 50.801950,
+            lng: -4.088588
         }
     ],
     finalLocation: {
-        words: "donation.decently.forgets",
-        message: "Something for the future - Look up at our home, our forever home. It may not be perfect yet, but I will do everything I can to mould this place into the home you've always dreamed of. I love you Bumble Bee.",
-        lat: 51.508341,
-        lng: -0.125499
+        message: "Something for the future - Look up at our home, our forever home. It may not be perfect yet, but I will do everything I can to mould this place into the home you've always dreamed of. I love you Bumble Bee."
     }
 };
 
@@ -339,9 +336,7 @@ function nextClue() {
 }
 
 function showFinalScreen() {
-    document.getElementById('final-words').textContent = CONFIG.finalLocation.words;
     document.getElementById('final-message').textContent = CONFIG.finalLocation.message;
-    loadMap('final-map', CONFIG.finalLocation.words, CONFIG.finalLocation.lat, CONFIG.finalLocation.lng);
     showScreen('final-screen');
     createConfetti();
 }
