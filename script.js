@@ -56,7 +56,7 @@ const CONFIG = {
         }
     ],
     finalLocation: {
-        message: "Something for the future - Look up at our home, our forever home. It may not be perfect yet, but I will do everything I can to mould this place into the home you've always dreamed of. I love you Bumble Bee."
+        message: "Something for the future - Look up at our home, our forever home. It may not be perfect yet, but I will do everything I can to mould this place into the home you've always dreamed of. I love you Bumble Bee. Happy Birthday!"
     }
 };
 
@@ -95,6 +95,10 @@ function loadClue(index) {
     document.getElementById('clue-text').textContent = clue.clue;
     document.getElementById('hint-text').textContent = clue.hint;
     document.getElementById('hint-text').classList.add('hidden');
+    
+    // Reset hint button text
+    const hintBtn = document.getElementById('hint-btn');
+    hintBtn.textContent = 'Need a hint? 💡';
     
     // Update word pattern display
     document.getElementById('word-pattern').textContent = clue.displayPattern;

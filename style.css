@@ -311,6 +311,9 @@ body {
     margin-bottom: 20px;
     border: 2px solid var(--primary);
     letter-spacing: 2px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 #answer-input {
